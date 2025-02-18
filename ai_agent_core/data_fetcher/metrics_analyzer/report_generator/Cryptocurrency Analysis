@@ -1,0 +1,118 @@
+# AI Agent Code for Cryptocurrency Analysis and Reporting
+
+## ai_agent_core/base_agent.py
+```python
+class BaseAIAgent:
+    def __init__(self, name, config):
+        self.name = name
+        self.config = config
+        self.data = None
+        self.analysis = None
+
+    def fetch_data(self):
+        raise NotImplementedError("Subclasses must implement this method")
+
+    def analyze_data(self):
+        raise NotImplementedError("Subclasses must implement this method")
+
+    def generate_report(self):
+        raise NotImplementedError("Subclasses must implement this method")
+```
+
+## data_fetcher/data_fetcher.py
+```python
+import requests
+import time
+
+class DataFetcher:
+    def __init__(self, api_urls):
+        self.api_urls = api_urls
+
+    def fetch_all_data(self):
+        all_data = []
+        for url in self.api_urls:
+            try:
+                response = requests.get(url)
+                if response.status_code == 200:
+                    all_data.append(response.json())
+                time.sleep(1)  # Prevent API rate limits
+            except Exception as e:
+                print(f"Error fetching data from {url}: {e}")
+        return all_data
+
+    def clean_data(self, data):
+        cleaned = []
+        for dataset in data:
+            cleaned.extend([item for item in dataset if item.get('price') and item.get('volume')])
+        return cleaned
+```
+
+## metrics_analyzer/metrics_analyzer.py
+```python
+import numpy as np
+
+class MetricsAnalyzer:
+    def __init__(self):
+        pass
+
+    def calculate_metrics(self, data):
+        prices = [item['price'] for item in data]
+        volumes = [item['volume'] for item in data]
+        return {
+            'average_price': np.mean(prices),
+            'volatility': np.std(prices),
+            'max_drawdown': np.min(prices) / np.max(prices) - 1,
+            'average_volume': np.mean(volumes)
+        }
+
+    def calculate_technical_indicators(self, prices):
+        # Example: Simple Moving Average (SMA)
+        sma = np.convolve(prices, np.ones(5)/5, mode='valid')
+        return {'SMA': sma}
+```
+
+## report_generator/report_generator.py
+```python
+import json
+
+class ReportGenerator:
+    def __init__(self):
+        pass
+
+    def generate_text_report(self, analysis, output_file='report.txt'):
+        with open(output_file, 'w') as file:
+            json.dump(analysis, file, indent=4)
+
+    def generate_html_report(self, analysis, output_file='report.html'):
+        html_content = f"<html><body><h1>Crypto Report</h1><pre>{json.dumps(analysis, indent=4)}</pre></body></html>"
+        with open(output_file, 'w') as file:
+            file.write(html_content)
+```
+
+## main.py
+```python
+from ai_agent_core.base_agent import BaseAIAgent
+from data_fetcher.data_fetcher import DataFetcher
+from metrics_analyzer.metrics_analyzer import MetricsAnalyzer
+from report_generator.report_generator import ReportGenerator
+
+class CryptoAIAgent(BaseAIAgent):
+    def __init__(self, name, config, api_urls):
+        super().__init__(name, config)
+        self.data_fetcher = DataFetcher(api_urls)
+        self.analyzer = MetricsAnalyzer()
+        self.reporter = ReportGenerator()
+
+    def run(self):
+        self.data = self.data_fetcher.fetch_all_data()
+        cleaned_data = self.data_fetcher.clean_data(self.data)
+        self.analysis = self.analyzer.calculate_metrics(cleaned_data)
+        indicators = self.analyzer.calculate_technical_indicators([item['price'] for item in cleaned_data])
+        self.analysis.update(indicators)
+        self.reporter.generate_text_report(self.analysis)
+        self.reporter.generate_html_report(self.analysis)
+
+if __name__ == "__main__":
+    api_urls = ['https://api1.example.com/data', 'https://api2.example.com/data']
+    agent = CryptoAIAgent('CryptoAgent', {}, api_urls)
+    agent.run()
