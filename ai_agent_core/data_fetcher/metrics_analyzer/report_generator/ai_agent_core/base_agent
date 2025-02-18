@@ -1,0 +1,64 @@
+ai-agents-modular/
+│
+├── ai_agent_core/
+│   ├── base_agent.py
+│   ├── config.py
+│
+├── data_fetcher/
+│   ├── data_fetcher.py
+│   ├── api_config.py
+│
+├── metrics_analyzer/
+│   ├── metrics_analyzer.py
+│   ├── indicators.py
+│
+├── report_generator/
+│   ├── report_generator.py
+│   ├── templates/
+│
+├── data/
+│   ├── historical_data/
+│   ├── reports/
+│
+├── tests/
+│   ├── test_agent.py
+│
+├── requirements.txt
+├── README.md
+└── main.py
+```
+
+---
+
+## **Code Snippets for Each Module:**
+
+**ai_agent_core/base_agent.py**
+```python
+class BaseAIAgent:
+    def __init__(self, name, config):
+        self.name = name
+        self.config = config
+
+    def run(self):
+        raise NotImplementedError("This method should be implemented by subclasses")
+```
+
+**data_fetcher/data_fetcher.py**
+```python
+import requests
+class DataFetcher:
+    ...
+```
+
+**metrics_analyzer/metrics_analyzer.py**
+```python
+import numpy as np
+class MetricsAnalyzer:
+    ...
+```
+
+**report_generator/report_generator.py**
+```python
+class ReportGenerator:
+    ...
+```
