@@ -4,73 +4,72 @@
 
 This project provides a modular AI agent designed for **cryptocurrency analysis and report generation**. The agent:
 
-- **Collects data** from multiple trading platforms.
-- **Analyzes** key market metrics.
-- **Generates detailed reports** to help traders make informed decisions while minimizing risks.
+## Project Overview
+
+The AI Agents Modular project is a robust, modular AI system designed for cryptocurrency analysis and comprehensive report generation. This agent:
+- Collects and processes data from multiple cryptocurrency trading platforms.
+- Analyzes key market indicators using machine learning algorithms.
+- Produces detailed, customizable reports to support informed trading decisions and mitigate risks.
 
 ## Features
-
-- **Multi-platform Data Collection**: Interfaces with APIs from major cryptocurrency exchanges like Binance, Coinbase, and Kraken.
-- **Real-Time Analysis**: Utilizes machine learning models to analyze trends, volume, and price movements in real-time.
-- **Customizable Reports**: Offers configurable report formats tailored to user preferences or specific analytical needs.
-- **Modular Architecture**: Allows for easy integration of new modules or updates to existing ones without affecting the core system.
+- **Multi-platform Data Collection:** Seamlessly integrates with APIs from major exchanges such as Binance, Coinbase, and Kraken.
+- **Real-Time Analysis:** Applies AI models for live analysis of market trends, volume fluctuations, and price movements.
+- **Configurable Reports:** Generates tailored reports based on user-defined parameters and analytical needs.
+- **Modular Architecture:** Supports plug-and-play modules, facilitating easy integration and updates without disrupting the core system.
 
 ## Architecture
-
-- **Data Ingestion Module**: Responsible for fetching and storing data from various sources.
-- **Analysis Engine**: Uses AI to process data and predict market movements.
-- **Reporting Module**: Generates and formats reports based on analysis results.
+- **Data Fetcher Module:** Fetches and manages data from various external sources.
+- **Metrics Analyzer Engine:** Employs AI for data processing, market predictions, and risk assessments.
+- **Report Generator Module:** Creates and formats comprehensive analytical reports.
 
 ## Installation
-
 ### Prerequisites
 - Python 3.8+
-- pip
+- pip (Python package manager)
 
 ### Steps
-
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/AI-Agents-Modular-Project.git
-   cd AI-Agents-Modular-Project
+   git clone https://github.com/yourusername/ai-agents-modular.git
+   cd ai-agents-modular
+   ```
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Configure environment variables:**
+   Create a `.env` file in the project root and add your API keys.
 
-  2.  Install dependencies:
-      ```bash 
-    pip install -r requirements.txt
-   
-   Set up your environment variables:
-Create a .env file in the root directory with your API keys.
+4. **Run the application:**
+   ```bash
+   python main.py
+   ```
 
-   Run the application:
-
-     python 
-
-Basic usage:
-
-  ```bash 
-from agent import CryptoAgent
+### Basic Usage:
+```python
+from ai_agent_core.crypto_agent import CryptoAgent
 agent = CryptoAgent()
 agent.run_analysis()
-agent.generate_report() 
+agent.generate_report()
+```
 
-Advanced usage includes customizing the agent's behavior or extending its capabilities.
+### Advanced Usage:
+Customizing agent behavior or extending its functionality is straightforward with the modular architecture.
 
- Contributing
- Contributions are welcome! Please follow these steps:
+## Contributing
+Contributions are welcome! To contribute:
+- Fork the repository.
+- Create a new branch: `git checkout -b feature/YourFeature`.
+- Commit changes: `git commit -m 'Add YourFeature'`.
+- Push to branch: `git push origin feature/YourFeature`.
+- Open a pull request.
 
-Fork the project.
-Create your feature branch (git checkout -b feature/AmazingFeature).
-Commit your changes (git commit -m 'Add some AmazingFeature').
-Push to the branch (git push origin feature/AmazingFeature).
+## License
+This project is licensed under the MIT License – see `LICENSE.md` for details.
 
-Open a pull request.
+## Acknowledgments
+Thanks to the open-source community for essential libraries and frameworks that power this project.
 
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
-
-Acknowledgments
-Thanks to the open-source community for invaluable libraries and frameworks.
----
 
 ## **Contact**
 **Orest Yatskuliak** – [GitHub](OrestRocky) – [LinkedIn](https://www.linkedin.com/in/orest-yatskuliak-b765461b0/)
