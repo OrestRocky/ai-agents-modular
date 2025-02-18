@@ -65,4 +65,4 @@ This project is licensed under the MIT License.
 ---
 
 ## **Contact**
-**Orest Yatskuliak** – [GitHub](https://github.com/yourusername) – [LinkedIn](https://linkedin.com/in/yourprofile)
+**Orest Yatskuliak** – [GitHub](OrestRocky) – [LinkedIn](https://www.linkedin.com/in/orest-yatskuliak-b765461b0/)
