@@ -1,1 +1,44 @@
-Це другий файл, створений через термінал 💻
+# second_terminal.txt
+
+"""
+news_sentiment_analyzer.py
+
+A mock sentiment analyzer that classifies news headlines as positive,
+negative, or neutral based on keywords.
+
+Author: Orest Rocky
+Created: 2025-04-06
+"""
+
+positive_keywords = ["growth", "profit", "success", "win", "record"]
+negative_keywords = ["crash", "loss", "fail", "drop", "decline"]
+
+
+def analyze_sentiment(text: str) -> str:
+    text = text.lower()
+    score = 0
+    for word in positive_keywords:
+        if word in text:
+            score += 1
+    for word in negative_keywords:
+        if word in text:
+            score -= 1
+
+    if score > 0:
+        return "Positive"
+    elif score < 0:
+        return "Negative"
+    return "Neutral"
+
+
+if __name__ == "__main__":
+    sample_news = [
+        "Bitcoin hits new record high amid institutional growth",
+        "Stock market crashes after Fed announcement",
+        "New tech startup reports stable growth",
+        "Major drop in oil prices as global demand falls"
+    ]
+
+    for headline in sample_news:
+        sentiment = analyze_sentiment(headline)
+        print(f"{headline} → Sentiment: {sentiment}")
