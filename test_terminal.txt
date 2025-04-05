@@ -1,1 +1,33 @@
-Це тестовий файл через термінал.
+# test_terminal.txt
+
+"""
+account_manager.py
+
+This module provides classes and functions to manage user accounts,
+including registration, login, and account overview features.
+
+Author: Orest Rocky
+Created: 2025-04-06
+"""
+
+import hashlib
+import datetime
+
+
+class UserAccount:
+    def __init__(self, username: str, password: str):
+        self.username = username
+        self._password_hash = self._hash_password(password)
+        self.created_at = datetime.datetime.now()
+
+    def _hash_password(self, password: str) -> str:
+        return hashlib.sha256(password.encode()).hexdigest()
+
+    def check_password(self, password: str) -> bool:
+        return self._hash_password(password) == self._password_hash
+
+    def __repr__(self):
+        return f"<UserAccount(username={self.username}, created_at={self.created_at})>"
+
+
+class AccountManager
